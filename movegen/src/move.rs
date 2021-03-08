@@ -68,6 +68,8 @@ impl MoveType {
 pub struct Move(u16);
 
 impl Move {
+    pub const NULL: Self = Self(0x0);
+
     pub fn new(origin: Square, target: Square, move_type: MoveType) -> Move {
         debug_assert!(origin.idx() < Square::NUM_SQUARES);
         debug_assert!(target.idx() < Square::NUM_SQUARES);
@@ -145,6 +147,10 @@ pub struct MoveList(Vec<Move>);
 impl MoveList {
     pub fn new() -> MoveList {
         MoveList(Vec::new())
+    }
+
+    pub fn with_capacity(capacity: usize) -> MoveList {
+        MoveList(Vec::with_capacity(capacity))
     }
 }
 
